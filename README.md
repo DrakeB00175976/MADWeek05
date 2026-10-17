@@ -26,6 +26,14 @@ Step 8: Type  ``` Set-ExecutionPolicy -Scope CurrentUser Unrestricted   ``` on t
 Step 9: Type ``` npx expo install react-dom react-native-web ``` to enable web preview of the app. \
 Step 10: Tyep ``` npx expo start  ``` to start the project \
 
+### Web preview notes
+
+- The image reference in App.js must match the existing assets/spider-man.jpg file.
+- The entry point imports setimmediate so the existing Swiper arrow buttons work in browsers.
+- Screen padding is reduced to 1% to fit the booking form in a maximised desktop browser without a ScrollView; the date section is grouped to prevent overlapping controls.
+- The image height is 150 pixels with an 8-pixel top margin, and the slider bottom margin is 14 pixels, to leave room for the forms below browser toolbars.
+- The existing native DateTimePicker does not support web. Test date selection on Android or iOS; its component and props are unchanged.
+
 
 # Part 1
 

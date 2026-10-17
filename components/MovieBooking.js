@@ -1,3 +1,4 @@
+
 import {Text, SafeAreaView, TextInput, StyleSheet, View, Switch, Button, TouchableOpacity} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Slider from '@react-native-community/slider';
@@ -15,6 +16,11 @@ export default function MovieBooking({ screenstyle }) {
   // Create a movieList state variable using useState().
   // Add an array of three movie objects.
   // Each movie should have an id, title and age.
+  const [movieList, setMovieList] = useState([
+    { id: 1, title: 'Kneecap', age: 16 },
+    { id: 2, title: 'Joker, Folie a Deux', age: 18 },
+    { id: 3, title: 'Deadpool and Wolverine', age: 12 }
+  ]);
 
   return (
     <View style={screenstyle}>
@@ -28,19 +34,26 @@ export default function MovieBooking({ screenstyle }) {
             Use the map() function to loop through movieList.
             Return a Picker.Item for each movie.
             Use movie.title for the label and value.
-            Use movie.id as the key.*/
-             //add code here which will produce an appropriate <Picker.Item> tag for each movie.
-                 //instead of hard coding the label and value use {movie.title}
-          }
-
-
+            Use movie.id as the key.
+        */}
+        {movieList.map((movie) => {
+          return (
+            <Picker.Item
+              key={movie.id}
+              label={movie.title}
+              value={movie.title}
+            />
+          );
+        })}
       </Picker>
 
-      <DatePicker
-        thisDate={movieDate}
-        setThisdate={setMoviedate}
-        datelabel="Showing Date"
-      />
+      <View style={{ width: "100%" }}>
+        <DatePicker
+          thisDate={movieDate}
+          setThisdate={setMoviedate}
+          datelabel="Showing Date"
+        />
+      </View>
 
       <Text style={styles.label}>
         Number of Tickets: {totalTickets}
@@ -68,7 +81,8 @@ export default function MovieBooking({ screenstyle }) {
 
 const styles = StyleSheet.create({
   sliderstyle: {
-    marginBottom: "5%"
+    width: "100%",
+    marginBottom: 14
   },
 
   label: {
